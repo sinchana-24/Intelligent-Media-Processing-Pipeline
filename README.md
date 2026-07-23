@@ -1,26 +1,37 @@
-# 🚗 Vehicle AI Inspector
+# Intelligent Vehicle Image Processing Pipeline
 
-## Intelligent Vehicle Image Processing Pipeline
-
-Vehicle AI Inspector is an AI-powered backend application built using **FastAPI**, **OpenCV**, **SQLAlchemy**, **SQLite**, and **ImageHash**. The application accepts vehicle image uploads, processes them asynchronously, performs image quality analysis, detects vehicle number plates, identifies duplicate images using perceptual hashing (pHash), and returns structured analysis results through REST APIs.
+Vehicle AI Inspector is an AI-powered backend application built using **FastAPI**, **OpenCV**, **SQLAlchemy**, **SQLite**, and **ImageHash**. The application accepts vehicle image uploads, processes them asynchronously, performs image quality analysis, detects vehicle number plates, identifies duplicate images using Perceptual Hash (pHash), and returns structured analysis results through REST APIs.
 
 This project was developed as part of the **Backend + AI Engineering Take-Home Assignment**.
 
 ---
 
+## 🌐 Live Demo
+
+**Application:**  
+https://intelligent-media-processing-pipeline-yl2m.onrender.com
+
+---
+
+## 📂 GitHub Repository
+
+https://github.com/sinchana-24/Intelligent-Media-Processing-Pipeline
+
+---
+
 # ✨ Features
 
-- Upload vehicle images
-- Background image processing
-- Vehicle number plate detection
-- OCR-based vehicle number extraction
-- Brightness analysis
-- Blur detection
-- Duplicate image detection using Perceptual Hash (pHash)
-- Processing status tracking
-- REST APIs for upload, status, and result retrieval
-- SQLite database integration
-- Responsive web interface
+- 📤 Upload vehicle images
+- ⚙️ Background image processing
+- 🚘 Vehicle number plate detection
+- 🔍 OCR-based vehicle number extraction
+- 🌞 Brightness analysis
+- 🌫️ Blur detection
+- 🧠 Duplicate image detection using Perceptual Hash (pHash)
+- 📊 Processing status tracking
+- 🌐 REST APIs for upload, status, and result retrieval
+- 💾 SQLite database integration
+- 🎨 Responsive web interface
 
 ---
 
@@ -37,7 +48,7 @@ This project was developed as part of the **Backend + AI Engineering Take-Home A
 
 - OpenCV
 - ImageHash
-- OCR (EasyOCR/Tesseract depending on configuration)
+- EasyOCR / Tesseract (depending on configuration)
 
 ## Frontend
 
@@ -51,11 +62,12 @@ This project was developed as part of the **Backend + AI Engineering Take-Home A
 # 📁 Project Structure
 
 ```text
-vehicle-ai-inspector/
+Intelligent-Media-Processing-Pipeline/
 │
 ├── app/
 │   ├── analysis/
 │   │   ├── __init__.py
+│   │   ├── heuristics.py
 │   │   ├── ocr.py
 │   │   ├── pipeline.py
 │   │   ├── plate_detector.py
@@ -95,35 +107,35 @@ vehicle-ai-inspector/
 # 🏗️ System Architecture
 
 ```text
-                 Vehicle Image
-                       │
-                       ▼
-              Upload API (FastAPI)
-                       │
-                       ▼
-             Store Image Metadata
-                       │
-                       ▼
+                   Vehicle Image
+                         │
+                         ▼
+                Upload API (FastAPI)
+                         │
+                         ▼
+              Store Image Metadata
+                         │
+                         ▼
           Background Image Processing
-                       │
-        ┌──────────────┼──────────────┐
-        ▼              ▼              ▼
-   Brightness      Blur Check    Duplicate Check
-        │
-        ▼
- Vehicle Number Plate Detection
-        │
-        ▼
-     OCR Extraction
-        │
-        ▼
-      Store Results
-        │
-        ▼
-    SQLite Database
-        │
-        ▼
- Status & Result APIs
+                         │
+      ┌──────────────────┼──────────────────┐
+      ▼                  ▼                  ▼
+ Brightness         Blur Detection    Duplicate Check
+      │
+      ▼
+Vehicle Number Plate Detection
+      │
+      ▼
+ OCR Text Extraction
+      │
+      ▼
+ Store Analysis Results
+      │
+      ▼
+   SQLite Database
+      │
+      ▼
+Status & Result APIs
 ```
 
 ---
@@ -133,25 +145,25 @@ vehicle-ai-inspector/
 1. Upload a vehicle image.
 2. Save the uploaded image.
 3. Store image metadata in SQLite.
-4. Start background image processing.
+4. Start background processing.
 5. Analyze image brightness.
 6. Detect image blur.
 7. Generate the perceptual hash (pHash).
-8. Compare the image hash with previously processed images.
+8. Compare with previously processed images.
 9. Detect the vehicle number plate.
-10. Extract the vehicle registration number.
-11. Store the analysis results in the database.
+10. Extract the vehicle registration number using OCR.
+11. Store the analysis results.
 12. Return the processing status and final analysis.
 
 ---
 
 # 🔍 Image Analysis
 
-## Brightness Detection
+## 🌞 Brightness Detection
 
 The application calculates the average grayscale intensity of the uploaded image.
 
-Possible results:
+Possible outputs:
 
 - Dark
 - Normal
@@ -159,34 +171,34 @@ Possible results:
 
 ---
 
-## Blur Detection
+## 🌫️ Blur Detection
 
 Blur detection is performed using the **Variance of Laplacian** method.
 
-Possible results:
+Possible outputs:
 
 - Blurry
 - Not Blurry
 
 ---
 
-## Duplicate Detection
+## 🧠 Duplicate Detection
 
 Duplicate images are detected using **Perceptual Hash (pHash)** by comparing the uploaded image hash with hashes stored in the database.
 
 ---
 
-## Vehicle Number Plate Detection
+## 🚘 Vehicle Number Plate Detection
 
-The application detects the vehicle number plate from the uploaded image and extracts the vehicle registration number using OCR.
+The application detects the vehicle number plate from the uploaded image and extracts the registration number using OCR.
 
 ---
 
 # 💾 Database
 
-SQLite stores the following information:
+SQLite stores:
 
-- Image ID
+- Processing ID
 - File Name
 - Processing Status
 - Image Hash
@@ -205,7 +217,7 @@ SQLite stores the following information:
 
 **POST**
 
-```
+```http
 /upload
 ```
 
@@ -223,7 +235,7 @@ Example Response
 
 **GET**
 
-```
+```http
 /status/{processing_id}
 ```
 
@@ -248,7 +260,7 @@ Possible values:
 
 **GET**
 
-```
+```http
 /result/{processing_id}
 ```
 
@@ -274,19 +286,19 @@ Example Response
 
 # 🚀 Installation
 
-Clone the repository
+## Clone the Repository
 
 ```bash
-git clone https://github.com/sinchana-24/vehicle-ai-inspector.git
+git clone https://github.com/sinchana-24/Intelligent-Media-Processing-Pipeline.git
 ```
 
-Move into the project
+## Navigate to the Project
 
 ```bash
-cd vehicle-ai-inspector
+cd Intelligent-Media-Processing-Pipeline
 ```
 
-Create a virtual environment
+## Create a Virtual Environment
 
 ### Windows
 
@@ -302,31 +314,23 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-Install dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the application
+## Run the Application
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Open your browser
+Open your browser:
 
-```
+```text
 http://127.0.0.1:8000
 ```
-
----
-
-# 🌐 Live Demo
-
-**Render Deployment**
-
-https://vehicle-ai-inspector.onrender.com
 
 ---
 
@@ -344,7 +348,7 @@ https://vehicle-ai-inspector.onrender.com
 
 # 🤖 AI Usage Disclosure
 
-AI tools were used during development for:
+AI-assisted tools were used during development for:
 
 - Project planning
 - Backend development
@@ -353,24 +357,24 @@ AI tools were used during development for:
 - Documentation assistance
 - Code refactoring
 
-All AI-assisted code was manually reviewed, tested, and integrated into the final application.
+All AI-generated code was manually reviewed, tested, and integrated into the final application.
 
 ---
 
 # ⚙️ Design Decisions
 
-- FastAPI was selected for building REST APIs.
-- SQLAlchemy was used for ORM-based database operations.
-- SQLite was chosen for lightweight local storage.
-- OpenCV was used for image preprocessing and analysis.
-- ImageHash was used for duplicate image detection.
-- Background processing is handled using a lightweight in-memory worker.
+- FastAPI for high-performance REST APIs.
+- SQLAlchemy for ORM-based database management.
+- SQLite for lightweight local storage.
+- OpenCV for image preprocessing and computer vision.
+- ImageHash for duplicate image detection.
+- Background image processing using a lightweight in-memory worker.
 
 ---
 
 # ⚖️ Trade-offs
 
-- SQLite was used instead of PostgreSQL to keep the project lightweight.
+- SQLite was selected instead of PostgreSQL to keep the project lightweight.
 - Images are stored locally instead of cloud storage.
 - Background processing uses an in-memory worker instead of Redis or RabbitMQ.
 - OCR accuracy depends on image quality and number plate visibility.
@@ -386,6 +390,7 @@ The application handles:
 - Corrupted image files
 - Missing vehicle number plates
 - Duplicate image detection
+- OCR failures
 - Processing exceptions
 
 Failed requests are marked as **failed**, and the corresponding error message is stored in the database.
@@ -396,20 +401,23 @@ Failed requests are marked as **failed**, and the corresponding error message is
 
 - PostgreSQL integration
 - Docker containerization
-- Redis or RabbitMQ support
-- Cloud storage integration
+- Redis or RabbitMQ integration
+- Cloud storage support
 - Vehicle make and model recognition
 - Vehicle damage detection
 - Multiple vehicle detection
+- Authentication and authorization
 - Logging and monitoring
+- Unit and integration testing
 
 ---
 
 # 📌 Assumptions
 
 - Uploaded images contain a visible vehicle.
-- Images are uploaded in JPEG, PNG, or WEBP format.
+- Supported image formats are **JPEG**, **PNG**, and **WEBP**.
 - Duplicate detection is based on perceptual image hashing.
+- OCR accuracy depends on image quality and plate visibility.
 
 ---
 
@@ -420,3 +428,9 @@ Failed requests are marked as **failed**, and the corresponding error message is
 B.E. Computer Science and Engineering
 
 Vivekananda College of Engineering and Technology, Puttur
+
+---
+
+# 📄 License
+
+This project was developed for educational and evaluation purposes as part of the **Backend + AI Engineering Take-Home Assignment**.
